@@ -1,6 +1,6 @@
 
 import sys
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 
 
 def readColor() :
@@ -11,22 +11,23 @@ def readColor() :
     print(Fore.WHITE + "    3 - " + Fore.BLUE + "BLUE")
     print(Fore.WHITE + "    4 - " + Fore.YELLOW + "ORANGE")
     print(Fore.WHITE + "    5 - " + Fore.WHITE + "WHITE")
+    print(Fore.WHITE + "    6 - OTHER")
 
     print("\n")
 
     return input("Number: ")
 
+def checkColor(color:str) :
+    if (len(color) == 7) :
+        if (color[0] == '#') :
+            i = 0
+            for c in color[1:] :
+                ordC = ord(c)
+                if (ordC >= 48 and ordC <= 57) or (ordC >= 65 and ordC <= 70) or (ordC >= 97 and ordC <= 102) :
+                    i += 1
 
-def readHeading(headers) :
-    print("\nSelect the heading: \n")
-
-    for i in range(len(headers)) :
-        print(f"    {i+1} -")
-        print("".join(headers[i]))
-
-    print("\n")
-
-    return input("Number: ")
+            if i == 6 : return color
+    else : return 0
 
 
 def selectColor() :
@@ -36,6 +37,7 @@ def selectColor() :
         '3': "#2773ad", # BLUE
         '4': "#b56117", # ORANGE
         '5': "#ffffff", # WHITE
+        '6': "6",
         }
 
     c = 0
@@ -43,11 +45,27 @@ def selectColor() :
         color = readColor()
         c = switch.get(color, 0)
 
+        if c == "6" :
+            print("\nWrite your color. Ej: #ffffff")
+            c = checkColor(input("Color: "))
+
         if c == 0 :
             print(Fore.RED + "\nNumber not valid")
             print(Style.RESET_ALL)
 
     return c
+
+
+def readHeading(headers) :
+    print("\nSelect the heading: \n")
+
+    for i in range(len(headers)) :
+        print(f"    {i+1} -")
+        print("".join(headers[i]).replace('@', ' '))
+
+    print("\n")
+
+    return input("Number: ")
 
 
 def selectHeading() :
@@ -88,7 +106,8 @@ def createFile(color:str, header) :
     fileD.write('\n# Title\n' + '+ vbox {\n' + '  left = 33%\n' + '  top = 10%\n' + '  width = 40%\n')
 
     for i in header :
-        fileD.write('  + label { width = 400 align = "center" ' + f'color = "{color}" font = "Hack Regular 16" text = "{i[:-1]}"' + ' }\n')
+        hLine = i[:-1].replace('@', ' ')
+        fileD.write('  + label { width = 400 align = "center" ' + f'color = "{color}" font = "Hack Regular 16" text = "{hLine}"' + ' }\n')
 
     fileD.write('}\n')
 
