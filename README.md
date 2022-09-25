@@ -6,15 +6,11 @@
 
 ## Dependencies
 
-For a succesful installation, these are the dependencies:
+Before you start installing the theme, you need to install:
 
-* `python3` : `apt, rpm, pacman, etc.`
+* `python3`
 
-* `pip` :
-
-    ```sh
-    python3 install pip
-    ```
+* `pip`
 
 * `colorama` :
 
@@ -22,7 +18,7 @@ For a succesful installation, these are the dependencies:
     pip install colorama
     ```
 
-## Install
+## Installation
 
 1. Install dependencies
 2. Clone the repository
@@ -40,10 +36,10 @@ For a succesful installation, these are the dependencies:
 
 4. Follow the installer steps
 
-    It will ask you for your user password because it is necessary for accessing the GRUB files.
+    You will be prompted for your user password as it is required to access the GRUB files.
 
 5. Done ;)
 
 ## Problems or sugestions
 
-Feel free to open an issue if you find a problem or have any sugestions.
+Feel free to open an issue if you find any problems or have any sugestions.
