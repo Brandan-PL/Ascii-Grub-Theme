@@ -46,11 +46,11 @@ def selectColor() :
         c = switch.get(color, 0)
 
         if c == "6" :
-            print("\nWrite your color. Ej: #ffffff")
+            print("\nWrite your color. Ej: #ffffff\n")
             c = checkColor(input("Color: "))
 
         if c == 0 :
-            print(Fore.RED + "\nNumber not valid")
+            print(Fore.RED + "\nNumber or color not valid")
             print(Style.RESET_ALL)
 
     return c
